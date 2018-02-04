@@ -12,5 +12,6 @@
     <orderEntry type="library" name="javax.ws.rs-api-2.0-sources" level="project" />
     <orderEntry type="library" name="base64-2.3.7" level="project" />
     <orderEntry type="library" name="org-apache-commons-codec" level="project" />
+    <orderEntry type="library" name="java-json" level="project" />
   </component>
 </module>

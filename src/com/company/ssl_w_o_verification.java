@@ -22,6 +22,7 @@ public class ssl_w_o_verification{
             try {
                 HttpsURLConnection urlConnection = (HttpsURLConnection)url.openConnection();
                 urlConnection.setRequestProperty("Content-Type", "application/json");
+
                 inStream = urlConnection.getInputStream();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(inStream));
                 System.out.println(reader.readLine());
