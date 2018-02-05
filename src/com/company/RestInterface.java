@@ -12,7 +12,7 @@ package com.company;
         private static SSLwoVerificationAuth ssl_auth = new SSLwoVerificationAuth();
 
 
-        /*******************************REST INTERFACE METHODS********************************/
+        /*******************************Public REST Passive METHODS No Auth********************************/
 
         //PUBLIC METHODS NO AUTH
             //rest interface to get guest inventory from local appliance
@@ -30,7 +30,7 @@ package com.company;
                 return ssl_noauth.query(hostname,"realms");
             }
 
-        /********************************PUBLIC Passive METHODS AUTH************************************/
+        /********************************Public Passive METHODS AUTH************************************/
         //rest interface to get hosts from local appliance
         public static String getHosts(String hostname){
             return ssl_auth.challenge(tok.challenge(hostname),hostname,"/hosts","GET");
@@ -87,7 +87,7 @@ package com.company;
 
         //rest interface to get network profiles from local appliance
         public static String getNetworkProfiles(String hostname){
-            return ssl_auth.challenge(tok.challenge(hostname),hostname,"/network/profiles","GET");
+            return ssl_auth.challenge(tok.challenge(hostname),hostname,"/profiles","GET");
         }
 
         //rest interface to get pools from local appliance

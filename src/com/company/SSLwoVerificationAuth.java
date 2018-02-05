@@ -1,6 +1,5 @@
 package com.company;
 
-import org.json.JSONObject;
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -12,7 +11,6 @@ public class SSLwoVerificationAuth {
 
     public static String data =null;
     //public static String token0 = "-1";
-    //public static String preamble = "Authorization:Bearer=";
     public static String userpass = "/api/";
     public static String complete = "";
 
@@ -48,8 +46,7 @@ public class SSLwoVerificationAuth {
                 data = reader.readLine();
                 System.out.println(data);
 
-                //JSONObject obj = new JSONObject(data);
-                //token0 = (String)obj.get("token");
+
 
             } catch (Exception e) {
                 e.printStackTrace();

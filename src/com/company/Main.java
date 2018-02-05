@@ -24,7 +24,7 @@ public class Main {
 
         //RestInterface.getAuthMe(host);
 
-        //////////RestInterface.getBrokerAssignments(host);
+        //RestInterface.getBrokerAssignments(host);
 
         //RestInterface.getBus(host);
 
@@ -36,7 +36,7 @@ public class Main {
 
         //RestInterface.getHostClusterMembers(host);
 
-        //////////RestInterface.getNetworkProfiles(host);
+        //RestInterface.getNetworkProfiles(host);
 
         //RestInterface.getPools(host);
 
