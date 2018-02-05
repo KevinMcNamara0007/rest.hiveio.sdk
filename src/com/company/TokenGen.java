@@ -16,7 +16,7 @@ public class TokenGen {
 
     public String challenge(String hostname) {
         try {
-            URL url = new URL(hostname+userpass);
+            URL url = new URL("https://"+hostname+userpass);
             InputStream inStream = null;
 
             try {

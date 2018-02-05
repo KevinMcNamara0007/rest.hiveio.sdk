@@ -8,19 +8,20 @@ import java.io.InputStreamReader;
 import java.net.URL;
 
 
-public class ssl_w_o_verification_auth {
+public class SSLwoVerificationAuth {
 
     public static String data =null;
     //public static String token0 = "-1";
-    public static String preamble = "Authorization:Bearer=";
+    //public static String preamble = "Authorization:Bearer=";
     public static String userpass = "/api/";
     public static String complete = "";
 
 
     public String challenge(String token, String hostname, String rest_interface, String method) {
-        complete = hostname+userpass+rest_interface+"?"+preamble+token;
+        //complete = hostname+userpass+RestInterface+"?"+preamble+token;
+        complete = "https://"+hostname+userpass+rest_interface;
 
-        System.out.println(complete);
+        //System.out.println(complete);
 
         try {
             URL url = new URL(complete);
@@ -38,10 +39,14 @@ public class ssl_w_o_verification_auth {
                 }
 
                 urlConnection.setRequestProperty("Content-Type", "application/json");
+                //urlConnection.setRequestProperty("Authorization:Bearer", token);
+                urlConnection.setRequestProperty("Authorization", "Bearer "+token);
+
                 inStream = urlConnection.getInputStream();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(inStream));
 
                 data = reader.readLine();
+                System.out.println(data);
 
                 //JSONObject obj = new JSONObject(data);
                 //token0 = (String)obj.get("token");

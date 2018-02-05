@@ -9,7 +9,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 //SSL Connector with no verification
 
-public class ssl_w_o_verification{
+public class SSLwoVerification {
 
 
     public String data =null;
