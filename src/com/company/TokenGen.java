@@ -6,12 +6,13 @@ import java.io.*;
 import java.net.URL;
 import org.json.*;
 
+
 public class TokenGen {
 
-
+    private static Globals g = new Globals();
     public static String data =null;
     public static String token0 = "-1";
-    public static String userpass = "/api/auth?username=admin&password=admin&realm=local";
+    public static String userpass = "/api/auth?username="+g._LOGIN +"&password="+g._PWD+"&realm=local";
 
 
     public String challenge(String hostname) {

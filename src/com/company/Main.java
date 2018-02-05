@@ -2,34 +2,52 @@ package com.company;
 
 
 public class Main {
+    private static Globals g = new Globals();
+
+    public static String host = g._HOST;
 
     public static void main(String[] args) {
-/****************************test rest_interfaces***************************************************************************/
+/****************************    test passive_rest_interfaces    ***************************************************************************/
         //test public interfaces
-        //RestInterface.getGuests("i2.hiveio.com:1443");
+        //RestInterface.getGuests(host);
 
-        //RestInterface.getAlerts("i2.hiveio.com:1443");
+        //RestInterface.getAlerts(host);
 
-        //RestInterface.getRealms("i2.hiveio.com:1443");
-
+        //RestInterface.getRealms(host);
 
         //test private interfaces
-        RestInterface.getHostOverview("i2.hiveio.com:1443");
+        //RestInterface.getHosts(host);
 
-        RestInterface.getHostStatistics("i2.hiveio.com:1443");
+        //RestInterface.getHostOverview(host);
 
-        RestInterface.getAuthMe("i2.hiveio.com:1443");
+        //RestInterface.getHostStatistics(host);
 
-        //RestInterface.getBrokerAssignments("i2.hiveio.com:1443");
+        //RestInterface.getAuthMe(host);
 
-        RestInterface.getBus("i2.hiveio.com:1443");
+        //////////RestInterface.getBrokerAssignments(host);
 
-        RestInterface.getBusExchange("i2.hiveio.com:1443");
+        //RestInterface.getBus(host);
 
-        RestInterface.getBusQueue("i2.hiveio.com:1443");
+        //RestInterface.getBusExchange(host);
 
-        RestInterface.getHostClusterStatus("i2.hiveio.com:1443");
+        //RestInterface.getBusQueue(host);
 
-        RestInterface.getHostClusterMembers("i2.hiveio.com:1443");
+        //RestInterface.getHostClusterStatus(host);
+
+        //RestInterface.getHostClusterMembers(host);
+
+        //////////RestInterface.getNetworkProfiles(host);
+
+        //RestInterface.getPools(host);
+
+        //RestInterface.getStoragePools(host);
+
+        //RestInterface.getStoragePoolsInfo(host);
+
+        //RestInterface.getTemplates(host);
+
+        //RestInterface.getUsers(host);
+
+        //RestInterface.getHostsStorageTypes(host);
     }
 }

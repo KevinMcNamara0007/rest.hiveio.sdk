@@ -30,10 +30,19 @@ package com.company;
                 return ssl_noauth.query(hostname,"realms");
             }
 
-        /********************************PUBLIC METHODS AUTH************************************/
+        /********************************PUBLIC Passive METHODS AUTH************************************/
+        //rest interface to get hosts from local appliance
+        public static String getHosts(String hostname){
+            return ssl_auth.challenge(tok.challenge(hostname),hostname,"/hosts","GET");
+        }
         //rest interface to get host overview from local appliance
         public static String getHostOverview(String hostname){
             return ssl_auth.challenge(tok.challenge(hostname),hostname,"/host/overview","GET");
+        }
+
+        //rest interface to get host storage types from local appliance
+        public static String getHostsStorageTypes(String hostname){
+            return ssl_auth.challenge(tok.challenge(hostname),hostname,"/hosts/storage/types","GET");
         }
 
         //rest interface to get host statistics from local appliance
@@ -75,5 +84,36 @@ package com.company;
         public static String getHostClusterMembers(String hostname){
             return ssl_auth.challenge(tok.challenge(hostname),hostname,"/host/cluster/members","GET");
         }
+
+        //rest interface to get network profiles from local appliance
+        public static String getNetworkProfiles(String hostname){
+            return ssl_auth.challenge(tok.challenge(hostname),hostname,"/network/profiles","GET");
+        }
+
+        //rest interface to get pools from local appliance
+        public static String getPools(String hostname){
+            return ssl_auth.challenge(tok.challenge(hostname),hostname,"/pools","GET");
+        }
+
+        //rest interface to get storage pools from local appliance
+        public static String getStoragePools(String hostname){
+            return ssl_auth.challenge(tok.challenge(hostname),hostname,"/storage/pools","GET");
+        }
+
+        //rest interface to get storage pools info from local appliance
+        public static String getStoragePoolsInfo(String hostname){
+            return ssl_auth.challenge(tok.challenge(hostname),hostname,"/storage/pools/info","GET");
+        }
+
+        //rest interface to get templates info from local appliance
+        public static String getTemplates(String hostname){
+            return ssl_auth.challenge(tok.challenge(hostname),hostname,"/templates","GET");
+        }
+
+        //rest interface to get users info from local appliance
+        public static String getUsers(String hostname){
+            return ssl_auth.challenge(tok.challenge(hostname),hostname,"/users","GET");
+        }
+
 
     }
