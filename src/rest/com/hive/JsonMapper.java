@@ -2,9 +2,9 @@ package rest.com.hive;
 
 import org.json.JSONObject;
 
-public class JsonMapper {
+class JsonMapper {
 
-public static String output = "NULL";
+private static String output = "NULL";
 public static String[] outputA ;
 
     public void mapGuests(String data){

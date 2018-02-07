@@ -8,10 +8,10 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
 //SSL Connector with no verification
-public class SSLwoVerification {
+class SSLwoVerification {
 
 
-    public String data =null;
+    private String data =null;
 
     public String query(String hostname,String rest_interface) {
         try {
@@ -27,14 +27,16 @@ public class SSLwoVerification {
                 System.out.println(reader.readLine());
                 data = reader.readLine();
             } catch (Exception e) {
-                System.out.println(e);
+                e.printStackTrace();
+                //System.out.println(e);
             } finally {
                 if (inStream != null) {
                     inStream.close();
                 }
             }
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
+            //System.out.println(e);
         }
         return data;
     }

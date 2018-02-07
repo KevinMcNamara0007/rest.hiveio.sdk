@@ -1,24 +1,25 @@
 package rest.com.hive;
 
 
-public class Main {
-    private static Globals g = new Globals();
+class Main {
+    //private static final Globals g = new Globals();
 
-    private static String host = g._HOST;
+    private static final String host = Globals._HOST;
 
-    private static String guest = g._GUEST;
+    private static final String hostid = Globals._HOSTID;
+
+    private static String guest = Globals._GUEST;
 
 
     public static void main(String[] args) {
 /****************************    test passive_rest_interfaces    ***************************************************************************/
         //test public interfaces
-        //RestInterface.getGuests(host);
+        RestInterface.getGuests(host);
 
         //RestInterface.getAlerts(host);
 
         //RestInterface.getRealms(host);
 
-        //test private interfaces
         //RestInterface.getHosts(host);
 
         //RestInterface.getHostOverview(host);
@@ -81,8 +82,17 @@ public class Main {
 
         ///////RestInterface.postGuestMessage(host,guest);
 
-        RestInterface.postGuestDelete(host,guest);
+        //RestInterface.postGuestDelete(host,guest);
 
+        ///////RestInterface.postHostVerifyCMA(host,hostid);
+
+        ///////RestInterface.postHostVerifyRealm(host,hostid);
+
+        //RestInterface.postHostReboot(host,hostid);
+
+        //RestInterface.postHostShutdown(host,hostid);
+
+        RestInterface.postHostServices(host,hostid);
 
     }
 }

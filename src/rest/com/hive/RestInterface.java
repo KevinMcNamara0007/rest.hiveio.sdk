@@ -1,15 +1,15 @@
 package rest.com.hive;
 
-    public class RestInterface {
+    class RestInterface {
 
         //Token Generator
-        private static TokenGen tok = new TokenGen();
+        private static final TokenGen tok = new TokenGen();
 
         //connect to ssl session with no verification and no authorization
-        private static SSLwoVerification ssl_noauth = new SSLwoVerification();
+        private static final SSLwoVerification ssl_noauth = new SSLwoVerification();
 
         //connect to ssl session with no verification and no authorization
-        private static SSLwoVerificationAuth ssl_auth = new SSLwoVerificationAuth();
+        private static final SSLwoVerificationAuth ssl_auth = new SSLwoVerificationAuth();
 
 
         /*******************************Public REST Passive METHODS No Auth********************************/
@@ -199,4 +199,31 @@ package rest.com.hive;
         public static String postGuestPublish(String hostname, String guest){
             return ssl_auth.challengeGuest(tok.challenge(hostname),hostname,guest,"/publish","POST");
         }
+
+/** ******************************************* Host *********************************************************************/
+        //rest interface to post host verifycma from local appliance
+        public static String postHostVerifyCMA(String hostname, String hostid){
+            return ssl_auth.challengeHost(tok.challenge(hostname),hostname,hostid,"verifycma","POST");
+        }
+
+        //rest interface to post host verifyrealm from local appliance
+        public static String postHostVerifyRealm(String hostname, String hostid){
+            return ssl_auth.challengeHost(tok.challenge(hostname),hostname,hostid,"verifyrealm","POST");
+        }
+
+        //rest interface to post host reboot from local appliance
+        public static String postHostReboot(String hostname, String hostid){
+            return ssl_auth.challengeHost(tok.challenge(hostname),hostname,hostid,"/system/reboot","POST");
+        }
+
+        //rest interface to post host shutdown from local appliance
+        public static String postHostShutdown(String hostname, String hostid){
+            return ssl_auth.challengeHost(tok.challenge(hostname),hostname,hostid,"/system/shutdown","POST");
+        }
+
+        //rest interface to post host services from local appliance
+        public static String postHostServices(String hostname, String hostid){
+            return ssl_auth.challengeHost(tok.challenge(hostname),hostname,hostid,"/services","GET");
+        }
+
     }

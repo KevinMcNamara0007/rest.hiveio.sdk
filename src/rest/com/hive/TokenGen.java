@@ -6,12 +6,12 @@ import java.net.URL;
 import org.json.*;
 
 
-public class TokenGen {
+class TokenGen {
 
-    private static Globals g = new Globals();
-    public static String data =null;
-    public static String token0 = "-1";
-    public static String userpass = "/api/auth?username="+g._LOGIN +"&password="+g._PWD+"&realm=local";
+    //private static Globals g = new Globals();
+    private static String data =null;
+    private static String token0 = "-1";
+    private static final String userpass = "/api/auth?username="+ Globals._LOGIN +"&password="+ Globals._PWD +"&realm=local";
 
 
     public String challenge(String hostname) {
@@ -36,14 +36,15 @@ public class TokenGen {
 
             } catch (Exception e) {
                 e.printStackTrace();
-                System.out.println(e);
+                //System.out.println(e);
             } finally {
                 if (inStream != null) {
                     inStream.close();
                 }
             }
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
+            //System.out.println(e);
         }
         return token0;
     }

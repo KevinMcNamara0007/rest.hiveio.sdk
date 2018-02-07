@@ -1,9 +1,10 @@
 package rest.com.hive;
 
-public class Globals {
-    public static String _HOST = "i2.hiveio.com:1443";
-    public static String _LOGIN = "admin";
-    public static String _PWD = "admin";
-    public static String _GUEST = "VXLW100001";
+class Globals {
+    public static final String _HOST = "i2.hiveio.com:1443";
+    public static final String _LOGIN = "admin";
+    public static final String _PWD = "admin";
+    public static final String _GUEST = "VXLW100001";
+    public static final String _HOSTID = "23b20141e57f";
 
 }
