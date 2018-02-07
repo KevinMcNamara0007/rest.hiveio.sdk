@@ -1,5 +1,4 @@
-package com.company;
-
+package rest.com.hive;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;

@@ -1,4 +1,4 @@
-package com.company;
+package rest.com.hive;
 
 import org.json.JSONObject;
 

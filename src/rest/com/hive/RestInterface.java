@@ -1,4 +1,4 @@
-package com.company;
+package rest.com.hive;
 
     public class RestInterface {
 
@@ -56,8 +56,8 @@ package com.company;
         }
 
         //rest interface to get broker assignments from local appliance
-        public static String getBrokerAssignments(String hostname){
-            return ssl_auth.challenge(tok.challenge(hostname),hostname,"/broker/assignments","GET");
+        public static String getBrokerAssignments(String hostname, String username){
+            return ssl_auth.challengeUser(tok.challenge(hostname),hostname,username,"/broker/assignments","GET");
         }
 
         //rest interface to get bus from local appliance
@@ -115,5 +115,88 @@ package com.company;
             return ssl_auth.challenge(tok.challenge(hostname),hostname,"/users","GET");
         }
 
+        //rest interface to get Fabric Metrics from local appliance
+        public static String getMetricsFabric(String hostname, String id){
+            return ssl_auth.challengeID(tok.challenge(hostname),hostname,id,"metrics/fabric","GET");
+        }
 
+        //rest interface to get Fabric Metrics Memory from local appliance
+        public static String getMetricsFabricMemory(String hostname, String id){
+            return ssl_auth.challengeID(tok.challenge(hostname),hostname,id,"/memory","GET");
+        }
+
+        //rest interface to get Fabric Metrics CPU from local appliance
+        public static String getMetricsFabricCPU(String hostname, String id){
+            return ssl_auth.challengeID(tok.challenge(hostname),hostname,id,"/cpu","GET");
+        }
+
+        //rest interface to get Fabric Metrics Storage from local appliance
+        public static String getMetricsFabricStorage(String hostname, String id){
+            return ssl_auth.challengeID(tok.challenge(hostname),hostname,id,"/storage","GET");
+        }
+
+        //rest interface to get Fabric Metrics Sensors from local appliance
+        public static String getMetricsFabricSensors(String hostname, String id){
+            return ssl_auth.challengeID(tok.challenge(hostname),hostname,id,"/sensors","GET");
+        }
+
+        //rest interface to post guest reset from local appliance
+        public static String postGuestReset(String hostname, String guest){
+            return ssl_auth.challengeGuest(tok.challenge(hostname),hostname,guest,"/reset","POST");
+        }
+
+        //rest interface to post guest poweroff from local appliance
+        public static String postGuestPowerOff(String hostname, String guest){
+            return ssl_auth.challengeGuest(tok.challenge(hostname),hostname,guest,"/poweroff","POST");
+        }
+
+        //rest interface to post guest suspend from local appliance
+        public static String postGuestSuspend(String hostname, String guest){
+            return ssl_auth.challengeGuest(tok.challenge(hostname),hostname,guest,"/suspend","POST");
+        }
+
+        //rest interface to post guest resume from local appliance
+        public static String postGuestResume(String hostname, String guest){
+            return ssl_auth.challengeGuest(tok.challenge(hostname),hostname,guest,"/resume","POST");
+         }
+
+        //rest interface to post guest poweron from local appliance
+        public static String postGuestPowerOn(String hostname, String guest){
+            return ssl_auth.challengeGuest(tok.challenge(hostname),hostname,guest,"/poweron","POST");
+        }
+
+        //rest interface to post guest undefine from local appliance
+        public static String postGuestUndefine(String hostname, String guest){
+            return ssl_auth.challengeGuest(tok.challenge(hostname),hostname,guest,"/undefine","POST");
+        }
+
+        //rest interface to post guest reboot from local appliance
+        public static String postGuestReboot(String hostname, String guest){
+            return ssl_auth.challengeGuest(tok.challenge(hostname),hostname,guest,"/reboot","POST");
+        }
+
+        //rest interface to post guest shutdown from local appliance
+        public static String postGuestShutdown(String hostname, String guest){
+            return ssl_auth.challengeGuest(tok.challenge(hostname),hostname,guest,"/shutdown","POST");
+        }
+
+        //rest interface to post guest message from local appliance
+        public static String postGuestMessage(String hostname, String guest){
+            return ssl_auth.challengeGuest(tok.challenge(hostname),hostname,guest,"/message","POST");
+        }
+
+        //rest interface to post guest delete from local appliance
+        public static String postGuestDelete(String hostname, String guest){
+            return ssl_auth.challengeGuest(tok.challenge(hostname),hostname,guest,"/delete","POST");
+        }
+
+        //rest interface to post guest migrate from local appliance
+        public static String postGuestMigrate(String hostname, String guest){
+            return ssl_auth.challengeGuest(tok.challenge(hostname),hostname,guest,"/migrate","POST");
+        }
+
+        //rest interface to post guest publish from local appliance
+        public static String postGuestPublish(String hostname, String guest){
+            return ssl_auth.challengeGuest(tok.challenge(hostname),hostname,guest,"/publish","POST");
+        }
     }

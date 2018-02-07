@@ -1,4 +1,4 @@
-package com.company;
+package rest.com.hive;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
