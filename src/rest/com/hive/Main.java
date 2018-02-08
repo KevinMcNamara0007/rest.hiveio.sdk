@@ -1,5 +1,20 @@
 package rest.com.hive;
 
+/**
+ *  *   Copyright (c) 2018, HiveIO Inc and/or its affiliates. All rights reserved.
+ *      HiveIO PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ *
+ *
+ *      HiveIO Java SDK
+ *      Version 1.0
+ *      Please see attached README File to reference REST Interface Maps
+ *      See attached Example file as usage reference
+ *
+ *
+ *      Developed by: Kevin McNamara
+ *      Date: Feb 5, 2018
+ *
+ */
 
 class Main {
     //private static final Globals g = new Globals();
@@ -14,7 +29,7 @@ class Main {
     public static void main(String[] args) {
 /****************************    test passive_rest_interfaces    ***************************************************************************/
         //test public interfaces
-        RestInterface.getGuests(host);
+        //RestInterface.getGuests(host);
 
         //RestInterface.getAlerts(host);
 
@@ -92,7 +107,25 @@ class Main {
 
         //RestInterface.postHostShutdown(host,hostid);
 
-        RestInterface.postHostServices(host,hostid);
+        //RestInterface.postHostServices(host,hostid);
+
+        //RestInterface.postHostPackages(host,hostid);
+
+        //RestInterface.postHostImages(host,hostid);
+
+        //RestInterface.postHostNetworkProd(host,hostid);
+
+        //RestInterface.postHostNetworkInterfaces(host,hostid);
+
+        // value is not correct
+        ////////RestInterface.postHostGlobalCloneDensity(host,hostid);
+
+        //RestInterface.postHostState(host,hostid);
+
+        //simply names the supportfile after it is created.  Does not create the file
+        //RestInterface.postHostSupportFiles(host,hostid);
+
+        //RestInterface.postHostLicense(host,hostid);
 
     }
 }
