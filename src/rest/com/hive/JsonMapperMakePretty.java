@@ -14,21 +14,22 @@ package rest.com.hive;
  *      Date: Feb 5, 2018
  *
  */
-import org.json.JSONObject;
+import org.json.JSONArray;
 
-class JsonMapper {
 
-private static String output = "NULL";
-public static String[] outputA ;
+class JsonMapperMakePretty {
 
-    public void mapGuests(String data){
+    private static String output = "";
+
+    public String parseData(String data){
         try {
-            JSONObject obj = new JSONObject(data);
-            output = (String)obj.get("guest");
+            JSONArray json = new JSONArray(data);
+            output = json.toString(1);
 
         }catch(Exception e){
             e.printStackTrace();
         }
+        return output;
     }
 
 

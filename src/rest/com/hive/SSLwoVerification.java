@@ -14,6 +14,8 @@ package rest.com.hive;
  *      Date: Feb 5, 2018
  *
  */
+
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -26,6 +28,7 @@ class SSLwoVerification {
 
 
     private String data =null;
+    private static JsonMapperMakePretty mp = new JsonMapperMakePretty();
 
     public String query(String hostname,String rest_interface) {
         try {
@@ -38,8 +41,12 @@ class SSLwoVerification {
 
                 inStream = urlConnection.getInputStream();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(inStream));
-                System.out.println(reader.readLine());
+                //System.out.println(reader.readLine());
+
                 data = reader.readLine();
+
+                System.out.println(mp.parseData(data));
+
             } catch (Exception e) {
                 e.printStackTrace();
                 //System.out.println(e);

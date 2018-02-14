@@ -14,11 +14,14 @@ package rest.com.hive;
  *      Date: Feb 5, 2018
  *
  */
+
+
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import org.json.*;
 
 
 class SSLwoVerificationAuth {
@@ -60,7 +63,9 @@ class SSLwoVerificationAuth {
                 data = reader.readLine();
                 System.out.println(data);
 
-
+                //JSONObject json = new JSONObject(data);
+                JSONArray json = new JSONArray(data);
+                System.out.println(json.toString(2));
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -107,8 +112,6 @@ class SSLwoVerificationAuth {
 
                 data = reader.readLine();
                 System.out.println(data);
-
-
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -257,7 +260,9 @@ class SSLwoVerificationAuth {
             complete = "https://" + hostname + userpass + "host/" + hostid + "/supportfiles";
         }  else if (rest_interface.contains("license")) {
             complete = "https://" + hostname + userpass + "host/" + hostid + "/license";
-        }else {
+        }  else if (rest_interface.contains("certificate")) {
+            complete = "https://" + hostname + userpass + "host/" + hostid + "/certificate";
+        }  else {
             complete = "https://" + hostname + userpass + rest_interface + "/" + hostid;
         }
         System.out.println(complete);

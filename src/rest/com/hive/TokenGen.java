@@ -21,16 +21,16 @@ import org.json.*;
 
 
 class TokenGen {
-
-    //private static Globals g = new Globals();
-    private static String data =null;
     private static String token0 = "-1";
-    private static final String userpass = "/api/auth?username="+ Globals._LOGIN +"&password="+ Globals._PWD +"&realm=local";
+    //private static final String userpass = "/api/auth?username="+ Globals._LOGIN +"&password="+ Globals._PWD +"&realm=local";
+    private static final String auth = "{\"username\":\""+Globals._LOGIN+"\",\"password\":\""+Globals._PWD+"\",\"realm\":\"local\"}";
 
 
     public String challenge(String hostname) {
         try {
-            URL url = new URL("https://"+hostname+userpass);
+            URL url = new URL("https://"+hostname+"/api/auth");
+            //System.out.println("https://"+hostname+"/api/auth");
+
             InputStream inStream = null;
 
             try {
@@ -39,11 +39,15 @@ class TokenGen {
                 // CURLOPT_POST
                 urlConnection.setRequestMethod("POST");
                 urlConnection.setRequestProperty("Content-Type", "application/json");
+
+                urlConnection.setDoOutput(true);
+                OutputStreamWriter writer = new OutputStreamWriter(urlConnection.getOutputStream(),"UTF-8");
+                writer.write(auth);
+                writer.close();
+
                 inStream = urlConnection.getInputStream();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(inStream));
-                //System.out.println(reader.readLine());
-
-                data = reader.readLine();
+                String data = reader.readLine();
 
                 JSONObject obj = new JSONObject(data);
                 token0 = (String)obj.get("token");

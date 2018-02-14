@@ -282,4 +282,10 @@ package rest.com.hive;
         public static String postHostLicense(String hostname, String hostid){
             return ssl_auth.challengeHost(tok.challenge(hostname),hostname,hostid,"license","GET");
         }
+
+        //rest interface to post host certificate from local appliance
+        public static String postHostCertificate(String hostname, String hostid){
+            return ssl_auth.challengeHost(tok.challenge(hostname),hostname,hostid,"certificate","POST");
+    }
+
     }

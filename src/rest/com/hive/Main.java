@@ -25,6 +25,8 @@ class Main {
 
     private static String guest = Globals._GUEST;
 
+    //private static String profileid = Globals._PROFILEID;
+
 
     public static void main(String[] args) {
 /****************************    test passive_rest_interfaces    ***************************************************************************/
@@ -125,7 +127,13 @@ class Main {
         //simply names the supportfile after it is created.  Does not create the file
         //RestInterface.postHostSupportFiles(host,hostid);
 
-        //RestInterface.postHostLicense(host,hostid);
+        RestInterface.postHostLicense(host,hostid);
+
+        ////////RestInterface.postHostCertificate(host,hostid);
+
+        //System.out.println(auth);
+
+
 
     }
 }
