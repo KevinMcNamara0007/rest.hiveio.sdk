@@ -22,8 +22,30 @@ import org.json.*;
 
 class TokenGen {
     private static String token0 = "-1";
+    private static String auth = "-1";
     //private static final String userpass = "/api/auth?username="+ Globals._LOGIN +"&password="+ Globals._PWD +"&realm=local";
-    private static final String auth = "{\"username\":\""+Globals._LOGIN+"\",\"password\":\""+Globals._PWD+"\",\"realm\":\"local\"}";
+    //private static final String auth = "{\"username\":\""+Globals._LOGIN+"\",\"password\":\""+Globals._PWD+"\",\"realm\":\"local\"}";
+
+
+    private String createChallengeString(String hostname){
+        String message;
+        JSONObject json = new JSONObject();
+
+        try {
+            JSONObject jsonObj = new JSONObject();
+            json.put("username", Globals._LOGIN);
+            json.put("password", Globals._PWD);
+            json.put("realm", "local");
+            json.put("hostname", hostname);
+            //json.put("hostid", hostid);
+            auth = json.toString();
+            System.out.println(auth);
+
+        } catch(Exception e){
+
+        }
+        return auth;
+    }
 
 
     public String challenge(String hostname) {
@@ -42,7 +64,7 @@ class TokenGen {
 
                 urlConnection.setDoOutput(true);
                 OutputStreamWriter writer = new OutputStreamWriter(urlConnection.getOutputStream(),"UTF-8");
-                writer.write(auth);
+                writer.write(createChallengeString(hostname));
                 writer.close();
 
                 inStream = urlConnection.getInputStream();
@@ -66,6 +88,50 @@ class TokenGen {
         }
         return token0;
     }
+
+
+    public String challengeCert(String hostname, String certificate) {
+        try {
+            URL url = new URL("https://"+hostname+"/api/auth");
+            //System.out.println("https://"+hostname+"/api/auth");
+
+            InputStream inStream = null;
+
+            try {
+                HttpsURLConnection urlConnection = (HttpsURLConnection)url.openConnection();
+
+                // CURLOPT_POST
+                urlConnection.setRequestMethod("POST");
+                urlConnection.setRequestProperty("Content-Type", "application/json");
+
+                urlConnection.setDoOutput(true);
+                OutputStreamWriter writer = new OutputStreamWriter(urlConnection.getOutputStream(),"UTF-8");
+                writer.write(createChallengeString(hostname));
+                writer.close();
+
+                inStream = urlConnection.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inStream));
+                String data = reader.readLine();
+
+                JSONObject obj = new JSONObject(data);
+                token0 = (String)obj.get("token");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                //System.out.println(e);
+            } finally {
+                if (inStream != null) {
+                    inStream.close();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            //System.out.println(e);
+        }
+        return token0;
+    }
+
+
 
 
 }

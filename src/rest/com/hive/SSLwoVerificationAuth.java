@@ -25,15 +25,11 @@ import org.json.*;
 
 
 class SSLwoVerificationAuth {
-
     private static String data =null;
-    //public static String token0 = "-1";
     private static final String userpass = "/api/";
     private static String complete = "";
 
-
     public String challenge(String token, String hostname, String rest_interface, String method) {
-        //complete = hostname+userpass+RestInterface+"?"+preamble+token;
         complete = "https://"+hostname+userpass+rest_interface;
 
         //System.out.println(complete);
@@ -65,7 +61,7 @@ class SSLwoVerificationAuth {
 
                 //JSONObject json = new JSONObject(data);
                 JSONArray json = new JSONArray(data);
-                System.out.println(json.toString(2));
+                System.out.println(json.toString(3));
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -83,7 +79,6 @@ class SSLwoVerificationAuth {
     }
 
     public String challengeUser(String token, String hostname, String username, String rest_interface, String method) {
-        //complete = hostname+userpass+RestInterface+"?"+preamble+token;
         complete = "https://"+hostname+userpass+rest_interface+"?username="+username;
 
         //System.out.println(complete);
@@ -183,11 +178,120 @@ class SSLwoVerificationAuth {
         return data;
     }
 
-    public String challengeGuest(String token, String hostname, String guest, String rest_interface, String method) {
-        //complete = hostname+userpass+RestInterface+"?"+preamble+token;
-        complete = "https://"+hostname+userpass+"/guest/"+guest+rest_interface;
+    public String challengeAlert(String token, String hostname, String id, String rest_interface, String method) {
 
-        //System.out.println(complete);
+        if(rest_interface.contains("acknowledge")) {
+            complete = "https://" + hostname + userpass + "/alert/" + id + "/"+rest_interface;
+        } else if (rest_interface.contains("delete")) {
+            complete = "https://" + hostname + userpass + "/alert/" + id;
+        } else if (rest_interface.contains("storage")) {
+            complete = "https://" + hostname + userpass + "/metrics/fabric/" + id + rest_interface;
+        } else if (rest_interface.contains("sensors")) {
+            complete = "https://" + hostname + userpass + "/metrics/fabric/" + id + rest_interface;
+        } else {
+            complete = "https://" + hostname + userpass + rest_interface + "/" + id;
+        }
+        System.out.println(complete);
+
+        try {
+            URL url = new URL(complete);
+            InputStream inStream = null;
+
+            try {
+                HttpsURLConnection urlConnection = (HttpsURLConnection)url.openConnection();
+
+                if(method.contains("POST")) {
+                    // CURLOPT_POST
+                    urlConnection.setRequestMethod("POST");
+                } else if(method.contains("GET")) {
+                    // CURLOPT_GET
+                    urlConnection.setRequestMethod("GET");
+                } else {
+                    // CURLOPT_GET
+                    urlConnection.setRequestMethod("DELETE");
+                }
+
+                urlConnection.setRequestProperty("Content-Type", "application/json");
+                //urlConnection.setRequestProperty("Authorization:Bearer", token);
+                urlConnection.setRequestProperty("Authorization", "Bearer "+token);
+
+                inStream = urlConnection.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inStream));
+
+                data = reader.readLine();
+                System.out.println(data);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                //System.out.println(e);
+            } finally {
+                if (inStream != null) {
+                    inStream.close();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            //System.out.println(e);
+        }
+        return data;
+    }
+
+    public String challengeBus(String token, String hostname, String name, String rest_interface, String method) {
+
+        if(rest_interface.contains("exchangename")) {
+            complete = "https://" + hostname + userpass + "/bus/exchange/" + name;
+        } else if (rest_interface.contains("queuename")) {
+            complete = "https://" + hostname + userpass + "/queue/name/" + name;
+        } else {
+            complete = "https://" + hostname + userpass + rest_interface + "/" + name;
+        }
+        System.out.println(complete);
+
+        try {
+            URL url = new URL(complete);
+            InputStream inStream = null;
+
+            try {
+                HttpsURLConnection urlConnection = (HttpsURLConnection)url.openConnection();
+
+                if(method.contains("POST")) {
+                    // CURLOPT_POST
+                    urlConnection.setRequestMethod("POST");
+                } else if(method.contains("GET")) {
+                    // CURLOPT_GET
+                    urlConnection.setRequestMethod("GET");
+                } else {
+                    // CURLOPT_GET
+                    urlConnection.setRequestMethod("DELETE");
+                }
+
+                urlConnection.setRequestProperty("Content-Type", "application/json");
+                //urlConnection.setRequestProperty("Authorization:Bearer", token);
+                urlConnection.setRequestProperty("Authorization", "Bearer "+token);
+
+                inStream = urlConnection.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inStream));
+
+                data = reader.readLine();
+                System.out.println(data);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                //System.out.println(e);
+            } finally {
+                if (inStream != null) {
+                    inStream.close();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            //System.out.println(e);
+        }
+        return data;
+    }
+
+    public String challengeGuest(String token, String hostname, String guest, String rest_interface, String method) {
+        complete = "https://"+hostname+userpass+"/guest/"+guest+rest_interface;
 
         try {
             URL url = new URL(complete);
@@ -231,11 +335,10 @@ class SSLwoVerificationAuth {
         return data;
     }
 
-
     public String challengeHost(String token, String hostname, String hostid, String rest_interface, String method) {
 
         if(rest_interface.contains("verifycma")) {
-            complete = "https://" + hostname + userpass + "host/cma/verify";
+            complete = "https://" + hostname + userpass + "host/verifycma";
         } else if (rest_interface.contains("verifyrealm")) {
             complete = "https://" + hostname + userpass + "host/" + rest_interface;
         } else if (rest_interface.contains("reboot")) {
@@ -264,6 +367,176 @@ class SSLwoVerificationAuth {
             complete = "https://" + hostname + userpass + "host/" + hostid + "/certificate";
         }  else {
             complete = "https://" + hostname + userpass + rest_interface + "/" + hostid;
+        }
+        System.out.println(complete);
+
+        try {
+            URL url = new URL(complete);
+            InputStream inStream = null;
+
+            try {
+                HttpsURLConnection urlConnection = (HttpsURLConnection)url.openConnection();
+
+                if(method.contains("POST")) {
+                    // CURLOPT_POST
+                    urlConnection.setRequestMethod("POST");
+                } else {
+                    // CURLOPT_GET
+                    urlConnection.setRequestMethod("GET");
+                }
+
+                urlConnection.setRequestProperty("Content-Type", "application/json");
+                //urlConnection.setRequestProperty("Authorization:Bearer", token);
+                urlConnection.setRequestProperty("Authorization", "Bearer "+token);
+
+                inStream = urlConnection.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inStream));
+
+                data = reader.readLine();
+                System.out.println(data);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                //System.out.println(e);
+            } finally {
+                if (inStream != null) {
+                    inStream.close();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            //System.out.println(e);
+        }
+        return data;
+    }
+
+    public String challengeGuestPool(String token, String hostname, String name, String rest_interface, String method) {
+
+        if(rest_interface.contains("exchangename")) {
+            complete = "https://" + hostname + userpass + "/bus/exchange/" + name;
+        } else if (rest_interface.contains("queuename")) {
+            complete = "https://" + hostname + userpass + "/queue/name/" + name;
+        } else {
+            complete = "https://" + hostname + userpass + rest_interface + "/" + name;
+        }
+        System.out.println(complete);
+
+        try {
+            URL url = new URL(complete);
+            InputStream inStream = null;
+
+            try {
+                HttpsURLConnection urlConnection = (HttpsURLConnection)url.openConnection();
+
+                if(method.contains("POST")) {
+                    // CURLOPT_POST
+                    urlConnection.setRequestMethod("POST");
+                } else if(method.contains("GET")) {
+                    // CURLOPT_GET
+                    urlConnection.setRequestMethod("GET");
+                } else {
+                    // CURLOPT_GET
+                    urlConnection.setRequestMethod("DELETE");
+                }
+
+                urlConnection.setRequestProperty("Content-Type", "application/json");
+                //urlConnection.setRequestProperty("Authorization:Bearer", token);
+                urlConnection.setRequestProperty("Authorization", "Bearer "+token);
+
+                inStream = urlConnection.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inStream));
+
+                data = reader.readLine();
+                System.out.println(data);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                //System.out.println(e);
+            } finally {
+                if (inStream != null) {
+                    inStream.close();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            //System.out.println(e);
+        }
+        return data;
+    }
+
+    public String challengeStorage(String token, String hostname, String id, String rest_interface, String method) {
+
+        if(rest_interface.contains("browse")) {
+            complete = "https://" + hostname + userpass + "/storage/pool/" + id + "/browse";
+        } else if (rest_interface.contains("poolAdd")) {
+            complete = "https://" + hostname + userpass + "/storage/pools/";
+        } else if (rest_interface.contains("poolDelete")) {
+            complete = "https://" + hostname + userpass + "/storage/pool/" + id;
+        } else {
+            complete = "https://" + hostname + userpass + rest_interface + "/" + id;
+        }
+        System.out.println(complete);
+
+        try {
+            URL url = new URL(complete);
+            InputStream inStream = null;
+
+            try {
+                HttpsURLConnection urlConnection = (HttpsURLConnection)url.openConnection();
+
+                if(method.contains("POST")) {
+                    // CURLOPT_POST
+                    urlConnection.setRequestMethod("POST");
+                } else {
+                    // CURLOPT_GET
+                    urlConnection.setRequestMethod("GET");
+                }
+
+                urlConnection.setRequestProperty("Content-Type", "application/json");
+                //urlConnection.setRequestProperty("Authorization:Bearer", token);
+                urlConnection.setRequestProperty("Authorization", "Bearer "+token);
+
+                inStream = urlConnection.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inStream));
+
+                data = reader.readLine();
+                System.out.println(data);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                //System.out.println(e);
+            } finally {
+                if (inStream != null) {
+                    inStream.close();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            //System.out.println(e);
+        }
+        return data;
+    }
+
+    public String challengeTemplate(String token, String hostname, String name, String rest_interface, String method) {
+
+        if(rest_interface.contains("unload")) {
+            complete = "https://" + hostname + userpass + "/template/" + name + "/unload";
+        } else if (rest_interface.contains("load")) {
+            complete = "https://" + hostname + userpass + "/template/" + name + "/load";
+        } else if (rest_interface.contains("analyze")) {
+            complete = "https://" + hostname + userpass + "/template/" + name + "/analyze";
+        }  else if (rest_interface.contains("create")) {
+            complete = "https://" + hostname + userpass + "/template/" + name + "/create";
+        } else if (rest_interface.contains("author")) {
+            complete = "https://" + hostname + userpass + "/template/" + name + "/author";
+        }  else if (rest_interface.contains("duplicate")) {
+            complete = "https://" + hostname + userpass + "/template/" + name + "/duplicate";
+        }  else if (rest_interface.contains("convert")) {
+            complete = "https://" + hostname + userpass + "/template/convert";
+        } else if (rest_interface.contains("templateAdd")) {
+            complete = "https://" + hostname + userpass + "/templates";
+        }else {
+            complete = "https://" + hostname + userpass + rest_interface + "/" + name;
         }
         System.out.println(complete);
 

@@ -24,5 +24,6 @@ class Globals {
     public static final String _GUEST = "W10VXL0001";
     public static final String _HOSTID = "23b20141e57f";
     public static final String _PROFILEID = "69d28337-5885-49ca-bc98-e207390834b0";
+    public static String _CERT = "#%#$%$%$##$%#%#%#%^%$Y^%&Y%^&%^%^U";
 
 }

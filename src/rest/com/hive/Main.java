@@ -25,12 +25,20 @@ class Main {
 
     private static String guest = Globals._GUEST;
 
+    private static String certificate = Globals._CERT;
+
+    private static TokenGen t = new TokenGen();
+
     //private static String profileid = Globals._PROFILEID;
 
 
     public static void main(String[] args) {
 /****************************    test passive_rest_interfaces    ***************************************************************************/
         //test public interfaces
+
+        //test Token
+        //System.out.println(t.challenge(Globals._HOST));
+
         //RestInterface.getGuests(host);
 
         //RestInterface.getAlerts(host);
@@ -101,7 +109,7 @@ class Main {
 
         //RestInterface.postGuestDelete(host,guest);
 
-        ///////RestInterface.postHostVerifyCMA(host,hostid);
+        ////////RestInterface.postHostVerifyCMA(host,hostid);
 
         ///////RestInterface.postHostVerifyRealm(host,hostid);
 
@@ -127,11 +135,15 @@ class Main {
         //simply names the supportfile after it is created.  Does not create the file
         //RestInterface.postHostSupportFiles(host,hostid);
 
-        RestInterface.postHostLicense(host,hostid);
+        //RestInterface.postHostLicense(host,hostid);
 
-        ////////RestInterface.postHostCertificate(host,hostid);
+        //need to send a certificate file:  http format
+        /////////RestInterface.postHostCertificate(host,certificate);
 
         //System.out.println(auth);
+
+
+
 
 
 

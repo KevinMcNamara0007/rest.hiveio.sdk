@@ -38,7 +38,7 @@ package rest.com.hive;
             }
 
             //rest interface to get alerts from local appliance
-            public static String getAlerts(String hostname){
+            public static String getAlertsAcknowledge(String hostname, String id){
                 return ssl_noauth.query(hostname,"alerts");
             }
 
@@ -48,6 +48,18 @@ package rest.com.hive;
             }
 
         /********************************Public Passive METHODS AUTH************************************/
+
+
+            //rest interface to post alerts from local appliance
+            public static String getAlertsAck(String hostname, String id){
+                return ssl_auth.challengeAlert(tok.challenge(hostname),hostname,id,"acknowledge","POST");
+            }
+
+            //rest interface to delete alerts from local appliance
+            public static String getAlertsDelete(String hostname, String id){
+                return ssl_auth.challengeAlert(tok.challenge(hostname),hostname,id,"delete","DELETE");
+            }
+
             //rest interface to get hosts from local appliance
             public static String getHosts(String hostname){
                 return ssl_auth.challenge(tok.challenge(hostname),hostname,"/hosts","GET");
@@ -83,13 +95,13 @@ package rest.com.hive;
             }
 
             //rest interface to get bus exchange from local appliance
-            public static String getBusExchange(String hostname){
-                return ssl_auth.challenge(tok.challenge(hostname),hostname,"/bus/exchange","GET");
+            public static String getBusExchange(String hostname, String exchangename){
+                return ssl_auth.challengeBus(tok.challenge(hostname),hostname,exchangename,"/bus/exchange","GET");
             }
 
             //rest interface to get bus queue from local appliance
-            public static String getBusQueue(String hostname){
-                return ssl_auth.challenge(tok.challenge(hostname),hostname,"/bus/queue","GET");
+            public static String getBusQueue(String hostname, String queue){
+                return ssl_auth.challengeBus(tok.challenge(hostname),hostname,queue,"/bus/queue","GET");
             }
 
             //rest interface to get host cluster status from local appliance
@@ -285,7 +297,7 @@ package rest.com.hive;
 
         //rest interface to post host certificate from local appliance
         public static String postHostCertificate(String hostname, String hostid){
-            return ssl_auth.challengeHost(tok.challenge(hostname),hostname,hostid,"certificate","POST");
+            return ssl_auth.challengeHost(tok.challengeCert(hostname,hostid),hostname,hostid,"certificate","POST");
     }
 
     }
