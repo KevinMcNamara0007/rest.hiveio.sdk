@@ -18,9 +18,9 @@ package rest.com.hive;
 
 
 class Globals {
-    public static final String _HOST = "i2.hiveio.com:1443";
+    public static final String _HOST = "vdi.hiveio.com:1443";
     public static final String _LOGIN = "admin";
-    public static final String _PWD = "admin";
+    public static final String _PWD = "H1ve-123!";
     public static final String _GUEST = "W10VXL0001";
     public static final String _HOSTID = "23b20141e57f";
     public static final String _PROFILEID = "69d28337-5885-49ca-bc98-e207390834b0";

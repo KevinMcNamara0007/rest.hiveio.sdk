@@ -29,10 +29,20 @@ class SSLwoVerification {
 
     private String data =null;
     private static JsonMapperMakePretty mp = new JsonMapperMakePretty();
+    private static String call = "";
 
-    public String query(String hostname,String rest_interface) {
+    public String query(String hostname,String rest_interface, String focus) {
+
         try {
-            URL url = new URL("https://" + hostname + "/api/" + rest_interface);
+            if(focus.contains("running")){
+                call = "https://" + hostname + "/api/" + rest_interface+"?q=gueststate:-destroyed";
+            } else if(focus.contains("assigned")){
+                call = "https://" + hostname + "/api/" + rest_interface +"?q=username:-^null$";
+            } else {
+                call = "https://" + hostname + "/api/" + rest_interface;
+            }
+
+            URL url = new URL(call);
             InputStream inStream = null;
 
             try {

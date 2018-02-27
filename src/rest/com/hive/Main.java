@@ -39,7 +39,9 @@ class Main {
         //test Token
         //System.out.println(t.challenge(Globals._HOST));
 
-        //RestInterface.getGuests(host);
+        //RestInterface.getGuests(host,"running");
+
+        //RestInterface.getGuests(host,"assigned");
 
         //RestInterface.getAlerts(host);
 
