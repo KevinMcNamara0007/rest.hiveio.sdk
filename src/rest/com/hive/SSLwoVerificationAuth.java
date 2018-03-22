@@ -61,7 +61,7 @@ class SSLwoVerificationAuth {
 
                 //JSONObject json = new JSONObject(data);
                 JSONArray json = new JSONArray(data);
-                System.out.println(json.toString(3));
+                System.out.println(json.toString(2));
 
             } catch (Exception e) {
                 e.printStackTrace();

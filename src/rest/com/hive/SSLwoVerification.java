@@ -42,6 +42,8 @@ class SSLwoVerification {
                 call = "https://" + hostname + "/api/" + rest_interface;
             }
 
+            System.out.println(call);
+
             URL url = new URL(call);
             InputStream inStream = null;
 

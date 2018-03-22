@@ -301,6 +301,14 @@ package rest.com.hive;
         //rest interface to post host certificate from local appliance
         public static String postHostCertificate(String hostname, String hostid){
             return ssl_auth.challengeHost(tok.challengeCert(hostname,hostid),hostname,hostid,"certificate","POST");
-    }
+        }
+
+        //rest interface to get host storage list  from local appliance
+        public static String getHostStorage(String hostname, String hostid){
+            return ssl_auth.challengeStorage(tok.challengeCert(hostname,hostid),hostname,hostid,"browse","GET");
+        }
+
+
+
 
     }

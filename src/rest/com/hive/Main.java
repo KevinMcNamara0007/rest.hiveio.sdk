@@ -81,15 +81,15 @@ class Main {
 
         //RestInterface.getHostsStorageTypes(host);
 
-        //RestInterface.getMetricsFabric(host,"23b20141e57f");
+        //>>>>>RestInterface.getMetricsFabric(host,"266083fc3664");
 
-        //RestInterface.getMetricsFabricMemory(host,"23b20141e57f");
+        //>>>>>RestInterface.getMetricsFabricMemory(host,"266083fc3664");
 
-        //RestInterface.getMetricsFabricCPU(host,"23b20141e57f");
+        //RestInterface.getMetricsFabricCPU(host,"266083fc3664");
 
-        //RestInterface.getMetricsFabricStorage(host,"23b20141e57f");
+        //RestInterface.getMetricsFabricStorage(host,"266083fc3664");
 
-        //RestInterface.getMetricsFabricSensors(host,"23b20141e57f");
+        //RestInterface.getMetricsFabricSensors(host,"266083fc3664");
 
         //RestInterface.postGuestReset(host,"W10POUV0001");
 
